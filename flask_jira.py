@@ -22,7 +22,6 @@ class FlaskJIRA(object):
         app.config.setdefault('JIRA_BASIC_AUTH', None)
         app.config.setdefault('JIRA_OAUTH', None)
         app.config.setdefault('JIRA_JWT', None)
-        app.config.setdefault('JIRA_KERBEROS', None)
 
     def __getattr__(self, item):
         ctx = stack.top
@@ -32,8 +31,7 @@ class FlaskJIRA(object):
                                 options=ctx.app.config.get('JIRA_OPTIONS'),
                                 basic_auth=ctx.app.config.get('JIRA_BASIC_AUTH'),
                                 oauth=ctx.app.config.get('JIRA_OAUTH'),
-                                jwt=ctx.app.config.get('JIRA_JWT'),
-                                kerberos=ctx.app.config.get('JIRA_KERBEROS'))
+                                jwt=ctx.app.config.get('JIRA_JWT'))
 
 
             return getattr(ctx.jira, item)
